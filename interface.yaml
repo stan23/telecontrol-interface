@@ -1,0 +1,46 @@
+esphome:
+  name: wwlc
+
+esp32:
+  board: esp32dev
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+#api:
+#  password: ""
+
+
+ota:
+  - platform: esphome
+    password: ""
+
+wifi:
+  ssid: ""
+  password: ""
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "WWLC Fallback Hotspot"
+    password: ""
+
+captive_portal:
+    
+external_components:
+  - source: components
+
+
+text_sensor:
+  - platform: kessel_telecontrol
+    name: Kessel Telecontrol
+    uart_id: uart_telecontrol
+
+uart:
+  baud_rate: 9600
+  rx_pin: GPIO16
+  tx_pin: GPIO17
+  data_bits: 8
+  stop_bits: 1
+  parity: NONE
+  id: uart_telecontrol
